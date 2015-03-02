@@ -21,7 +21,7 @@
     echo "3" ;
 
     try {
-        echo "4" ;
+        echo "4".$helper ;
         $session = $helper->getSessionFromRedirect();
         echo "5" ;
     } catch( FacebookRequestException $ex ) {
