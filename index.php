@@ -5,6 +5,7 @@
     use Facebook\FacebookSession;
     use Facebook\FacebookRequest;
     use Facebook\GraphUser;
+    use Facebook\FacebookRedirectLoginHelper;
     use Facebook\FacebookRequestException;
 
     echo "1";
