@@ -1,11 +1,12 @@
 <?php
     use Facebook\FacebookSession;
+    use Facebook\FacebookRequest;
     use Facebook\GraphUser;
 
     FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
     // If you already have a valid access token:
-    $session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
+    //$session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
 
     // If you're making app-level requests:
     $session = FacebookSession::newAppSession();
@@ -22,29 +23,20 @@
     }
 
 
-    // Get the base class GraphObject from the response
-    $object = $response->getGraphObject();
+    try {
+        $response = (new FacebookRequest($session, 'GET', '/me'))->execute();
+        $object = $response->getGraphObject();
+        echo $object->getProperty('name');
+    } catch (FacebookRequestException $ex) {
+        echo $ex->getMessage();
+    } catch (\Exception $ex) {
+        echo $ex->getMessage();
+    }
 
-    // Get the response typed as a GraphUser
-    $user = $response->getGraphObject(GraphUser::className());
-    // or convert the base object previously accessed
-    // $user = $object->cast(GraphUser::className());
-
-    // Get the response typed as a GraphLocation
-    $loc = $response->getGraphObject(GraphLocation::className());
-    // or convert the base object previously accessed
-    // $loc = $object->cast(GraphLocation::className());
-
-    // User example
-    echo $object->getProperty('name');
-    echo $user->getName();
-
-    // Location example
-    echo $object->getProperty('country');
-    echo $loc->getCountry();
-
-    // SessionInfo example
-    //$info = $session->getSessionInfo());
-    //echo $info->getxpiresAt();
+    // You can chain methods together and get a strongly typed GraphUser
+    $me = (new FacebookRequest(
+        $session, 'GET', '/me'
+    ))->execute()->getGraphObject(GraphUser::className);
+    echo $me->getName();
 
 ?>
