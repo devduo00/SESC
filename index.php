@@ -35,6 +35,7 @@
 
         $graphObjMe	= $response->getGraphObject(GraphUser::className());
         $userName   = $graphObjMe->getName();
+        $userID     = $graphObjMe->getID();
 
         //echo  print_r( $userName, 1 );
 
@@ -91,7 +92,7 @@
 
 <?php if ($graphObjMe): ?>
     <h3> Welcome <?php  echo $userName; ?> !!! </h3>
-    <img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
+    <img src="https://graph.facebook.com/<?php echo $userID; ?>/picture">
 
     <h3>Your friend list Object is as follows (/me/friends?token=<?php echo $access_token; ?>)</h3>
     <pre><?php print_r($user_friendList); ?></pre>
