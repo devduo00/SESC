@@ -1,3 +1,4 @@
+<?php
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
@@ -20,3 +21,4 @@ echo " with message: " . $e->getMessage();
 }
 
 }
+?>
