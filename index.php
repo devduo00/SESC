@@ -17,6 +17,9 @@
 
     // login helper with redirect_uri
     $helper     = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
+
+    echo isset( $helper );
+
     $session    = $helper->getSessionFromRedirect();
 
     echo "3" ;
