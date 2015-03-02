@@ -1,26 +1,31 @@
 <?php
-    $session    = FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
+    //$session    = FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
-    use Facebook\FacebookRequest;
     use Facebook\GraphUser;
-    use Facebook\FacebookRequestException;
 
-    if($session) {
+    // Get the base class GraphObject from the response
+    $object = $response->getGraphObject();
 
-        try {
+    // Get the response typed as a GraphUser
+    $user = $response->getGraphObject(GraphUser::className());
+    // or convert the base object previously accessed
+    // $user = $object->cast(GraphUser::className());
 
-            $user_profile = (new FacebookRequest(
-                $session, 'GET', '/me'
-            ))->execute()->getGraphObject(GraphUser::className());
+    // Get the response typed as a GraphLocation
+    $loc = $response->getGraphObject(GraphLocation::className());
+    // or convert the base object previously accessed
+    // $loc = $object->cast(GraphLocation::className());
 
-            echo "Name: " . $user_profile->getName();
+    // User example
+    echo $object->getProperty('name');
+    echo $user->getName();
 
-        } catch(FacebookRequestException $e) {
+    // Location example
+    echo $object->getProperty('country');
+    echo $loc->getCountry();
 
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
+    // SessionInfo example
+    //$info = $session->getSessionInfo());
+    //echo $info->getxpiresAt();
 
-        }
-
-    }
 ?>
