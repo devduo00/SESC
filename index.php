@@ -2,6 +2,20 @@
 
     require_once 'autoload.php';
 
+    use Facebook\FacebookSession;
+    use Facebook\FacebookRedirectLoginHelper;
+    use Facebook\FacebookRequest;
+    use Facebook\FacebookResponse;
+    use Facebook\FacebookSDKException;
+    use Facebook\FacebookRequestException;
+    use Facebook\FacebookAuthorizationException;
+    use Facebook\GraphObject;
+    use Facebook\GraphUser;
+    use Facebook\GraphSessionInfo;
+    use Facebook\FacebookCurl;
+    use Facebook\FacebookHttpable;
+    use Facebook\FacebookCurlHttpClient;
+
     echo "1\n" ;
     session_start();
     FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
