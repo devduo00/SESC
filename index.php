@@ -17,7 +17,7 @@
     echo "3";
 
     // If you're making app-level requests:
-    $session = FacebookSession::newAppSession();
+    $session = FacebookSession::newAppSession('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
     echo "session";
     echo $session;
