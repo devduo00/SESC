@@ -3,6 +3,8 @@
 use fbsdk\src\Facebook\FacebookRequest;
 use fbsdk\src\Facebook\GraphUser;
 
+FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
+
 class GraphUserTest extends PHPUnit_Framework_TestCase
 {
 
