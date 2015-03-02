@@ -12,12 +12,12 @@
 
     echo "2";
     // If you already have a valid access token:
-    //$session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
+    $session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
 
     echo "3";
 
     // If you're making app-level requests:
-    $session = FacebookSession::newAppSession();
+    //$session = FacebookSession::newAppSession();
 
     echo "session";
     echo $session;
