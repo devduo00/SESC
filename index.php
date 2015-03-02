@@ -91,7 +91,7 @@
 <pre><?php print_r($_SESSION); ?></pre>
 
 <?php if ($graphObjMe): ?>
-    <h3> Welcome <?php  echo $userName; ?> !!! </h3>
+    <h3> Welcome <?php  echo $userName."(".$userID.")"; ?> !!! </h3>
     <img src="https://graph.facebook.com/<?php echo $userID; ?>/picture">
 
     <h3>Your friend list Object is as follows (/me/friends?token=<?php echo $access_token; ?>)</h3>
