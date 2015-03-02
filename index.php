@@ -56,6 +56,8 @@
     // login helper with redirect_uri
     $helper = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
 
+    echo "2";
+
     try {
         $session = $helper->getSessionFromRedirect();
     } catch( FacebookRequestException $ex ) {
@@ -63,6 +65,8 @@
     } catch( Exception $ex ) {
         // When validation fails or other local issues
     }
+
+    echo "3";
 
     // see if we have a session
     if ( isset( $session ) ) {
