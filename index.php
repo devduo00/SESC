@@ -43,8 +43,18 @@
         echo "success 3";
         $graphObject = $response->getGraphObject();
 
+
+        // firends
+        $request = new FacebookRequest(
+            $session,
+            'GET',
+            '/me/friendlists'
+        );
+        $response = $request->execute();
+        $user_friendList = $response->getGraphObject();
+
         // print data
-        echo  print_r( $graphObject, 1 );
+        //echo  print_r( $graphObject, 1 );
     } else {
         // show login url
         //echo '<a href="' . $helper->getLoginUrl() . '">Login</a>';
