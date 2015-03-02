@@ -1,4 +1,5 @@
 <?php
+/*
     session_start();
     require_once 'autoload.php';
 
@@ -53,7 +54,7 @@
     ))->execute()->getGraphObject(GraphUser::className);
     echo $me->getName();
 */
-
+/*
     // login helper with redirect_uri
     $helper = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
 
@@ -83,57 +84,53 @@
         // show login url
         echo '<a href="' . $helper->getLoginUrl() . '">Login</a>';
     }
-
+*/
 ?>
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <title>SESC</title>
+    <title>php-sdk</title>
+    <style>
+        body {
+            font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
+        }
+        h1 a {
+            text-decoration: none;
+            color: #3b5998;
+        }
+        h1 a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '1381794498804715',
-            xfbml      : true,
-            version    : 'v2.2'
-        });
+<h1>Sample web app using facebook php SDK </h1>
 
-        // ADD ADDITIONAL FACEBOOK CODE HERE
-        function onLogin(response) {
-            if (response.status == 'connected') {
-                FB.api('/me?fields=first_name', function(data) {
-                    var welcomeBlock = document.getElementById('fb-welcome');
-                    welcomeBlock.innerHTML = 'Hello, ' + data.first_name + '!';
-                });
-            }
-        }
+<?php if ($user): ?>
+    <a href="<?php echo $logoutUrl; ?>">Logout</a>
+<?php else: ?>
+    <div>
+        Check the login status using OAuth 2.0 handled by the PHP SDK:
+        <a href="<?php echo $statusUrl; ?>">Check the login status</a>
+    </div>
+    <div>
+        Login using OAuth 2.0 handled by the PHP SDK:
+        <a href="<?php echo $loginUrl; ?>">Login with Facebook</a>
+    </div>
+<?php endif ?>
 
-        FB.getLoginStatus(function(response) {
-            // Check login status on load, and if the user is
-            // already logged in, go directly to the welcome message.
-            if (response.status == 'connected') {
-                onLogin(response);
-            } else {
-                // Otherwise, show Login dialog first.
-                FB.login(function(response) {
-                    onLogin(response);
-                }, {scope: 'user_friends, email'});
-            }
-        });
-    };
+<h3>PHP Session</h3>
+<pre><?php print_r($_SESSION); ?></pre>
 
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+<?php if ($user): ?>
+    <h3> Welcome <?php  echo $user_profile['name']; ?> !!! </h3>
+    <img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
 
-
-</script>
-<h1 id="fb-welcome"></h1>
+    <h3>Your friend list Object is as follows (/me/friends?token=<?php echo $access_token; ?>)</h3>
+    <pre><?php print_r($user_friendList); ?></pre>
+<?php else: ?>
+    <strong><em>You are not Connected.</em></strong>
+<?php endif ?>
 </body>
 </html>
