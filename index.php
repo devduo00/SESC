@@ -1,24 +1,27 @@
 <?php
-use Facebook\FacebookRequest;
-use Facebook\GraphUser;
-use Facebook\FacebookRequestException;
 
-if($session) {
+use fbsdk\src\Facebook\FacebookRequest;
+use fbsdk\src\Facebook\GraphUser;
 
-try {
+class GraphUserTest extends PHPUnit_Framework_TestCase
+{
 
-$user_profile = (new FacebookRequest(
-$session, 'GET', '/me'
-))->execute()->getGraphObject(GraphUser::className());
+    public function testMeReturnsGraphUser()
+    {
+        $response = (
+        new FacebookRequest(
+            FacebookTestHelper::$testSession,
+            'GET',
+            '/me'
+        ))->execute()->getGraphObject(GraphUser::className());
 
-echo "Name: " . $user_profile->getName();
+        $info = FacebookTestHelper::$testSession->getSessionInfo();
 
-} catch(FacebookRequestException $e) {
-
-echo "Exception occured, code: " . $e->getCode();
-echo " with message: " . $e->getMessage();
+        $this->assertTrue($response instanceof GraphUser);
+        $this->assertEquals($info->getId(), $response->getId());
+        $this->assertNotNull($response->getName());
+        $this->assertNotNull($response->getLastName());
+        $this->assertNotNull($response->getLink());
+    }
 
 }
-
-}
-?>
