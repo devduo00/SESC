@@ -1,91 +1,22 @@
-<?php
-require '..fbsdk/src/facebook.php';
+use Facebook\FacebookRequest;
+use Facebook\GraphUser;
+use Facebook\FacebookRequestException;
 
-// Creating our Application instance (replace this with your appId and secret).
-$facebook = new Facebook(array(
-    'appId'  => '1381794498804715',
-    'secret' => 'dbcf7985ae7d57274665c75dcbe5b1d0',
-));
+if($session) {
 
-// Getting User ID
-$user = $facebook->getUser();
+try {
 
-// Get Access token
-$access_token = $facebook->getAccessToken();
+$user_profile = (new FacebookRequest(
+$session, 'GET', '/me'
+))->execute()->getGraphObject(GraphUser::className());
 
-// We may or may not have this data based on whether the user is logged in.
-//
-// If we have a $user id here, it means we know the user is logged into
-// Facebook, but we don't know if the access token is valid. An access
-// token is invalid if the user logged out of Facebook.
+echo "Name: " . $user_profile->getName();
 
-if ($user) {
-    try {
-        // Proceed knowing you have a logged in user who's authenticated.
-        // Retrieving user's friend list using fb graph api
-        $user_friendList = $facebook->api('/me/friends?access_token='.$access_token);
-        $user_profile = $facebook->api('/me','GET');
+} catch(FacebookRequestException $e) {
 
-    } catch (FacebookApiException $e) {
-        error_log($e);
-        $user = null;
-    }
+echo "Exception occured, code: " . $e->getCode();
+echo " with message: " . $e->getMessage();
+
 }
 
-// Login or logout url will be needed depending on current user state.
-if ($user) {
-    $logoutUrl = $facebook->getLogoutUrl();
-} else {
-    $statusUrl = $facebook->getLoginStatusUrl();
-    $loginUrl = $facebook->getLoginUrl();
 }
-
-
-?>
-<!doctype html>
-<html>
-<head>
-    <title>php-sdk</title>
-    <style>
-        body {
-            font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
-        }
-        h1 a {
-            text-decoration: none;
-            color: #3b5998;
-        }
-        h1 a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-<h1>Sample web app using facebook php SDK </h1>
-
-<?php if ($user): ?>
-    <a href="<?php echo $logoutUrl; ?>">Logout</a>
-<?php else: ?>
-    <div>
-        Check the login status using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $statusUrl; ?>">Check the login status</a>
-    </div>
-    <div>
-        Login using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $loginUrl; ?>">Login with Facebook</a>
-    </div>
-<?php endif ?>
-
-<h3>PHP Session</h3>
-<pre><?php print_r($_SESSION); ?></pre>
-
-<?php if ($user): ?>
-    <h3> Welcome <?php  echo $user_profile['name']; ?> !!! </h3>
-    <img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
-
-    <h3>Your friend list Object is as follows (/me/friends?token=<?php echo $access_token; ?>)</h3>
-    <pre><?php print_r($user_friendList); ?></pre>
-<?php else: ?>
-    <strong><em>You are not Connected.</em></strong>
-<?php endif ?>
-</body>
-</html>
