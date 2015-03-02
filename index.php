@@ -21,16 +21,18 @@
     echo "3" ;
 
     try {
+        echo "4" ;
         $session = $helper->getSessionFromRedirect();
+        echo "5" ;
     } catch( FacebookRequestException $ex ) {
         // When Facebook returns an error
-        echo "4" ;
+        echo "6" ;
     } catch( Exception $ex ) {
         // When validation fails or other local issues
-        echo "5" ;
+        echo "7" ;
     }
 
-    echo "1" ;
+    echo "8" ;
 
     if ( isset( $session ) ) {
         // graph api request for user data
