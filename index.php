@@ -24,13 +24,15 @@
 
     if ( isset( $session ) ) {
         // graph api request for user data
+        echo "success 1";
         $request = new FacebookRequest( $session, 'GET', '/me' );
+        echo "success 2";
         $response = $request->execute();
         // get response
+        echo "success 3";
         $graphObject = $response->getGraphObject();
 
         // print data
-        echo "success";
         echo  print_r( $graphObject, 1 );
     } else {
         // show login url
