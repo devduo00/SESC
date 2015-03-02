@@ -30,6 +30,7 @@
         $graphObject = $response->getGraphObject();
 
         // print data
+        echo "success";
         echo  print_r( $graphObject, 1 );
     } else {
         // show login url
