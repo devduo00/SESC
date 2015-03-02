@@ -32,9 +32,10 @@
         $graphObject= $response->getGraphObject();
         // print data
         //echo  print_r( $graphObject, 1 );
+        $user       = $graphObject->getName();
 
         // graph api request for friendlists data
-        $request2   = new FacebookRequest($session, 'GET', '/me/friendlists');
+        $request2   = new FacebookRequest($session, 'GET', '/me/friends');
         $response2  = $request2->execute();
         // get response
         $user_friendList = $response2->getGraphObject();
