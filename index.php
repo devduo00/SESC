@@ -3,10 +3,15 @@
     use Facebook\FacebookRequest;
     use Facebook\GraphUser;
 
+    echo "1";
+
     FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
+    echo "2";
     // If you already have a valid access token:
     //$session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
+
+    echo "3";
 
     // If you're making app-level requests:
     $session = FacebookSession::newAppSession();
