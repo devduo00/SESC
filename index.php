@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    require_once 'autoload.php';
+
     use Facebook\FacebookSession;
     use Facebook\FacebookRequest;
     use Facebook\GraphUser;
