@@ -16,4 +16,3 @@
     require_once( 'Facebook/HttpClients/FacebookHttpable.php');
     require_once( 'Facebook/HttpClients/FacebookCurlHttpClient.php');
 ?>
-
