@@ -4,10 +4,18 @@
     require_once 'autoload.php';
 
     use Facebook\FacebookSession;
-    use Facebook\FacebookRequest;
-    use Facebook\GraphUser;
     use Facebook\FacebookRedirectLoginHelper;
+    use Facebook\FacebookRequest;
+    use Facebook\FacebookResponse;
+    use Facebook\FacebookSDKException;
     use Facebook\FacebookRequestException;
+    use Facebook\FacebookAuthorizationException;
+    use Facebook\GraphObject;
+    use Facebook\GraphUser;
+    use Facebook\GraphSessionInfo;
+    use Facebook\FacebookCurl;
+    use Facebook\FacebookHttpable;
+    use Facebook\FacebookCurlHttpClient;
 
     echo "1" ;
 
