@@ -31,12 +31,12 @@
         // get response
         $graphObject= $response->getGraphObject();
         // print data
-        echo  print_r( $graphObject, 1 );
+        //echo  print_r( $graphObject, 1 );
 
         $graphObjMe	= $response->getGraphObject(GraphUser::className());
         $userName   = $graphObjMe->getName();
 
-        echo  print_r( $userName, 1 );
+        //echo  print_r( $userName, 1 );
 
         // graph api request for friendlists data
         $request2   = new FacebookRequest($session, 'GET', '/me/friends');
@@ -44,7 +44,7 @@
         // get response
         $user_friendList = $response2->getGraphObject();
         // print data
-        echo  print_r( $user_friendList, 1 );
+        //echo  print_r( $user_friendList, 1 );
 
     } else {
         // show login url
@@ -73,7 +73,7 @@
 <body>
 <h1>Sample web app using facebook php SDK </h1>
 
-<?php if ($user): ?>
+<?php if ($graphObjMe): ?>
     <a href="<?php echo $logoutUrl; ?>">Logout</a>
 <?php else: ?>
     <div>
@@ -89,8 +89,8 @@
 <h3>PHP Session</h3>
 <pre><?php print_r($_SESSION); ?></pre>
 
-<?php if ($user): ?>
-    <h3> Welcome <?php  echo $user_profile['name']; ?> !!! </h3>
+<?php if ($graphObjMe): ?>
+    <h3> Welcome <?php  echo $graphObjMe['name']; ?> !!! </h3>
     <img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
 
     <h3>Your friend list Object is as follows (/me/friends?token=<?php echo $access_token; ?>)</h3>
