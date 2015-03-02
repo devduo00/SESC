@@ -11,6 +11,9 @@
     // If you're making app-level requests:
     $session = FacebookSession::newAppSession();
 
+    echo "session";
+    echo $session;
+
     // To validate the session:
     try {
         $session->validate();
