@@ -26,12 +26,13 @@
     // login helper with redirect_uri
     $helper     = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
 
-    echo isset( $helper );
+    echo "$helper : ".isset( $helper );
     echo $helper->getSessionFromRedirect();
 
     $session    = $helper->getSessionFromRedirect();
 
     echo "3" ;
+    echo "$session : ".isset( $session );
 
     if ( isset( $session ) ) {
         // graph api request for user data
