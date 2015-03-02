@@ -5,29 +5,49 @@
     use Facebook\FacebookSession;
     use Facebook\FacebookRequest;
     use Facebook\GraphUser;
-    use Facebook\FacebookRequestException;
 
     echo "1";
 
-    FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
+    $result = FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
-    if($session) {
+    echo $result;
+    // If you already have a valid access token:
+    //$session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
 
-        try {
+    echo "3";
 
-            $user_profile = (new FacebookRequest(
-                $session, 'GET', '/me'
-            ))->execute()->getGraphObject(GraphUser::className());
+    // If you're making app-level requests:
+    $session = FacebookSession::newAppSession();
 
-            echo "Name: " . $user_profile->getName();
+    echo "session";
+    echo $session;
 
-        } catch(FacebookRequestException $e) {
-
-            echo "Exception occured, code: " . $e->getCode();
-            echo " with message: " . $e->getMessage();
-
-        }
-
+    // To validate the session:
+    try {
+        $session->validate();
+    } catch (FacebookRequestException $ex) {
+        // Session not valid, Graph API returned an exception with the reason.
+        echo $ex->getMessage();
+    } catch (\Exception $ex) {
+        // Graph API returned info, but it may mismatch the current app or have expired.
+        echo $ex->getMessage();
     }
+
+
+    try {
+        $response = (new FacebookRequest($session, 'GET', '/me'))->execute();
+        $object = $response->getGraphObject();
+        echo $object->getProperty('name');
+    } catch (FacebookRequestException $ex) {
+        echo $ex->getMessage();
+    } catch (\Exception $ex) {
+        echo $ex->getMessage();
+    }
+
+    // You can chain methods together and get a strongly typed GraphUser
+    $me = (new FacebookRequest(
+        $session, 'GET', '/me'
+    ))->execute()->getGraphObject(GraphUser::className);
+    echo $me->getName();
 
 ?>
