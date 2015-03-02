@@ -56,7 +56,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>php-sdk</title>
+    <title>SESC</title>
     <style>
         body {
             font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
