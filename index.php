@@ -22,7 +22,7 @@
         // When validation fails or other local issues
     }
 
-    echo "1";
+    echo "1" ;
 
     if ( isset( $session ) ) {
         // graph api request for user data
@@ -68,11 +68,11 @@
 <?php else: ?>
     <div>
         Check the login status using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $helper->getLoginUrl(); ?>">Check the login status</a>
+        <a href="<?php echo $statusUrl; ?>">Check the login status</a>
     </div>
     <div>
         Login using OAuth 2.0 handled by the PHP SDK:
-        <a href="<?php echo $loginUrl; ?>">Login with Facebook</a>
+        <a href="<?php echo $helper->getLoginUrl(); ?>">Login with Facebook</a>
     </div>
 <?php endif ?>
 
