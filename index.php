@@ -5,12 +5,13 @@
     use Facebook\FacebookSession;
     use Facebook\FacebookRequest;
     use Facebook\GraphUser;
+    use Facebook\FacebookRequestException;
 
     echo "1";
 
-    $result = FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
-
-    echo $result;
+    FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
+/*
+    echo "2";
     // If you already have a valid access token:
     //$session = new FacebookSession('00e77536cc63860b0624bd1383dfe21d');
 
@@ -19,6 +20,7 @@
     // If you're making app-level requests:
     $session = FacebookSession::newAppSession('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
+    echo "4";
     echo "session";
     echo $session;
 
@@ -49,5 +51,32 @@
         $session, 'GET', '/me'
     ))->execute()->getGraphObject(GraphUser::className);
     echo $me->getName();
+*/
+
+    // login helper with redirect_uri
+    $helper = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
+
+    try {
+        $session = $helper->getSessionFromRedirect();
+    } catch( FacebookRequestException $ex ) {
+        // When Facebook returns an error
+    } catch( Exception $ex ) {
+        // When validation fails or other local issues
+    }
+
+    // see if we have a session
+    if ( isset( $session ) ) {
+        // graph api request for user data
+        $request = new FacebookRequest( $session, 'GET', '/me' );
+        $response = $request->execute();
+        // get response
+        $graphObject = $response->getGraphObject();
+
+        // print data
+        echo  print_r( $graphObject, 1 );
+    } else {
+        // show login url
+        echo '<a href="' . $helper->getLoginUrl() . '">Login</a>';
+    }
 
 ?>
