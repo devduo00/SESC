@@ -17,22 +17,22 @@
     use Facebook\FacebookHttpable;
     use Facebook\FacebookCurlHttpClient;
 
-    echo "1" ;
+    echo "1\n" ;
 
     FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
 
-    echo "2" ;
+    echo "2\n" ;
 
     // login helper with redirect_uri
     $helper     = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
 
-    echo "$helper : ".isset( $helper );
+    echo "helper : ".isset( $helper ) ."\n";
     echo $helper->getSessionFromRedirect();
 
     $session    = $helper->getSessionFromRedirect();
 
-    echo "3" ;
-    echo "$session : ".isset( $session );
+    echo "3\n" ;
+    echo "session : ".isset( $session ) ."\n";
 
     if ( isset( $session ) ) {
         // graph api request for user data
