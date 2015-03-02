@@ -9,10 +9,16 @@
     use Facebook\FacebookRedirectLoginHelper;
     use Facebook\FacebookRequestException;
 
+    echo "1" ;
+
     FacebookSession::setDefaultApplication('1381794498804715', 'dbcf7985ae7d57274665c75dcbe5b1d0');
+
+    echo "2" ;
 
     // login helper with redirect_uri
     $helper = new FacebookRedirectLoginHelper( 'http://180.70.94.239:8080/fb/SESC/' );
+
+    echo "3" ;
 
     try {
         $session = $helper->getSessionFromRedirect();
