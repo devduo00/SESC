@@ -43,7 +43,7 @@
         $request2   = new FacebookRequest($session, 'GET', '/me/friends');
         $response2  = $request2->execute();
         // get response
-        $user_friendList = $response2->getGraphObject();
+        $user_friendList = $response2->getGraphObject(GraphUser::className());
         // print data
         echo  print_r( $user_friendList, 1 );
 
@@ -52,7 +52,7 @@
         $request3   = new FacebookRequest($session, 'GET', '/me/likes');
         $response3  = $request3->execute();
         // get response
-        $user_likes = $response3->getGraphObject();
+        $user_likes = $response3->getGraphObject(GraphUser::className());
         // print data
         echo  print_r( $user_likes, 1 );
 
