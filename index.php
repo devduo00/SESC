@@ -125,20 +125,23 @@
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+            if (response && !response.error) {
+                document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+            }
         });
 
         FB.api('/me/friends', function(response) {
-            document.getElementById('status').innerHTML +=
-                response;
+            if (response && !response.error) {
+                document.getElementById('friends').innerHTML= response;
+            }
         });
 
         FB.api('/me/likes', function(response) {
-            document.getElementById('status').innerHTML +=
-                response;
+            if (response && !response.error) {
+                document.getElementById('likes').innerHTML  = response;
+            }
         });
+
     }
 </script>
 
@@ -152,6 +155,12 @@
 </fb:login-button>
 
 <div id="status">
+</div>
+
+<div id="friends">
+</div>
+
+<div id="likes">
 </div>
 
 </body>
