@@ -47,7 +47,6 @@
         // print data
         echo  count($user_friendList).":".print_r( $user_friendList, 1 )."<br>";
 
-
         // graph api request for friendlists data
         $request3   = new FacebookRequest($session, 'GET', '/me/likes');
         $response3  = $request3->execute();
@@ -55,7 +54,7 @@
         $user_likes = $response3->getGraphObject(GraphUser::className());
         // print data
         echo  count($user_likes).":".print_r( $user_likes, 1 );
-
+        echo  $user_likes["data"];
 
     } else {
         // show login url
