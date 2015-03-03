@@ -150,15 +150,13 @@
         });
 
         FB.api('/me/friends', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+            document.getElementById('status').innerHTML +=
+                response;
         });
 
         FB.api('/me/likes', function(response) {
-            console.log('Successful login for: ' + response.name);
-            document.getElementById('status').innerHTML =
-                'Thanks for logging in, ' + response.name + '!';
+            document.getElementById('status').innerHTML +=
+                response;
         });
     }
 </script>
