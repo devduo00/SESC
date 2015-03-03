@@ -45,7 +45,7 @@
         // get response
         $user_friendList = $response2->getGraphObject(GraphUser::className());
         // print data
-        echo  print_r( $user_friendList, 1 );
+        echo  count($user_friendList).":".print_r( $user_friendList, 1 )."<br>";
 
 
         // graph api request for friendlists data
@@ -54,7 +54,7 @@
         // get response
         $user_likes = $response3->getGraphObject(GraphUser::className());
         // print data
-        echo  print_r( $user_likes, 1 );
+        echo  count($user_likes).":".print_r( $user_likes, 1 );
 
 
     } else {
