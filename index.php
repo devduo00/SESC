@@ -166,14 +166,14 @@
 <div id="status">
 </div>
 
-<div id="friends_t">
-    user_friends
+<div id="likes_t">
+    user_likes
 </div>
-<div id="friends">
+<div id="likes">
 </div>
 
 <div id="invitable_friends_t">
-    user_friends
+    invitable_friends
 </div>
 <div id="invitable_friends">
 </div>
@@ -184,6 +184,6 @@
 <div id="friends">
 </div>
 
-x
+
 </body>
 </html>
