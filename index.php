@@ -159,9 +159,15 @@
 <div id="status">
 </div>
 
+<div id="friends_t">
+    user_friends
+</div>
 <div id="friends">
 </div>
 
+<div id="likes">
+    user_likes
+</div>
 <div id="likes">
 </div>
 
