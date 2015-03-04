@@ -84,6 +84,7 @@
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
             testAPI();
+            testAPI2();
         } else if (response.status === 'not_authorized') {
             // The person is logged into Facebook, but not your app.
             document.getElementById('status').innerHTML = 'Please log ' +
@@ -150,7 +151,8 @@
                 document.getElementById('news').innerHTML  = news;
             }
         });
-
+    }
+    function testAPI2() {
         jQuery.getFeed({
             url     : "http://www.bet365.com/news/en/betting/sports/rss",
             success : function (feed) {
@@ -159,6 +161,7 @@
             }
         });
     }
+
 </script>
 
 <!--
