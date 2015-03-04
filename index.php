@@ -144,7 +144,7 @@
             }
         });
 
-        FB.api('/me/invitable_friends', function(response) {
+        FB.api('me?fields=id,name,friends', function(response) {
             if (response && !response.error) {
                 console.log(response);
                 document.getElementById('invitable_friends').innerHTML  = response;
