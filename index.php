@@ -126,6 +126,7 @@
         console.log('Welcome!  Fetching your information.... ');
         FB.api('/me?fields=id,name,likes,friends', function(response) {
             if (response && !response.error) {
+                console.log(response);
                 document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
                 document.getElementById('friends').innerHTML= response.friends;
                 document.getElementById('likes').innerHTML  = response.likes;
