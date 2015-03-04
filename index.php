@@ -136,7 +136,14 @@
         FB.api('/294874427225906/feed', function(response) {
             if (response && !response.error) {
                 console.log(response);
-                document.getElementById('news').innerHTML  = response.data;
+
+                var news = "";
+
+                for(var i = 0 ; i < response.data.length ; i++) {
+                    news    += response.data[i].message + "\n";
+                }
+
+                document.getElementById('news').innerHTML  = news;
             }
         });
     }
