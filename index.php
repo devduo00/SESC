@@ -144,6 +144,13 @@
             }
         });
 
+        FB.api('/me/invitable_friends', function(response) {
+            if (response && !response.error) {
+                console.log(response);
+                document.getElementById('invitable_friends').innerHTML  = response;
+            }
+        });
+
     }
 </script>
 
@@ -165,11 +172,18 @@
 <div id="friends">
 </div>
 
-<div id="likes_t">
-    user_likes
+<div id="invitable_friends_t">
+    user_friends
 </div>
-<div id="likes">
+<div id="invitable_friends">
 </div>
 
+<div id="friends_t">
+    user_friends
+</div>
+<div id="friends">
+</div>
+
+x
 </body>
 </html>
