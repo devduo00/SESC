@@ -150,7 +150,7 @@
         });
 
         jQuery.getFeed({
-            url     : http://www.bet365.com/news/en/betting/sports/rss,
+            url     : "http://www.bet365.com/news/en/betting/sports/rss",
             success : function (feed) {
                 console.log(feed.title);
                 // do more stuff here
