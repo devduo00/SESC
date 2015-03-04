@@ -148,6 +148,8 @@
             if (response && !response.error) {
                 console.log(response);
                 document.getElementById('invitable_friends').innerHTML  = response;
+            } else {
+                console.log(response);
             }
         });
 
