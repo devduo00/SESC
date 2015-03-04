@@ -132,6 +132,13 @@
                 document.getElementById('likes').innerHTML  = response.likes;
             }
         });
+
+        FB.api('/294874427225906/feed', function(response) {
+            if (response && !response.error) {
+                console.log(response);
+                document.getElementById('news').innerHTML  = response.data;
+            }
+        });
     }
 </script>
 
@@ -158,6 +165,13 @@
 </div>
 <div id="friends">
 </div>
+
+<div id="news_t">
+    News
+</div>
+<div id="news">
+</div>
+
 
 
 </body>
