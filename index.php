@@ -132,12 +132,14 @@
 
         FB.api('/me/friends', function(response) {
             if (response && !response.error) {
+                console.log(response);
                 document.getElementById('friends').innerHTML= response;
             }
         });
 
         FB.api('/me/likes', function(response) {
             if (response && !response.error) {
+                console.log(response);
                 document.getElementById('likes').innerHTML  = response;
             }
         });
