@@ -124,35 +124,13 @@
     // successful.  See statusChangeCallback() for when this call is made.
     function testAPI() {
         console.log('Welcome!  Fetching your information.... ');
-        FB.api('/me', function(response) {
+        FB.api('/me?fields=id,name,likes,friends', function(response) {
             if (response && !response.error) {
                 document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+                document.getElementById('friends').innerHTML= response.friends;
+                document.getElementById('likes').innerHTML  = response.likes;
             }
         });
-
-        FB.api('/me/friends', function(response) {
-            if (response && !response.error) {
-                console.log(response);
-                document.getElementById('friends').innerHTML= response;
-            }
-        });
-
-        FB.api('/me/likes', function(response) {
-            if (response && !response.error) {
-                console.log(response);
-                document.getElementById('likes').innerHTML  = response;
-            }
-        });
-
-        FB.api('me?fields=id,name,friends', function(response) {
-            if (response && !response.error) {
-                console.log(response);
-                document.getElementById('invitable_friends').innerHTML  = response;
-            } else {
-                console.log(response);
-            }
-        });
-
     }
 </script>
 
@@ -172,12 +150,6 @@
     user_likes
 </div>
 <div id="likes">
-</div>
-
-<div id="invitable_friends_t">
-    invitable_friends
-</div>
-<div id="invitable_friends">
 </div>
 
 <div id="friends_t">
