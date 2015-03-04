@@ -148,6 +148,14 @@
                 document.getElementById('news').innerHTML  = news;
             }
         });
+
+        jQuery.getFeed({
+            url     : http://www.bet365.com/news/en/betting/sports/rss,
+            success : function (feed) {
+                console.log(feed.title);
+                // do more stuff here
+            }
+        });
     }
 </script>
 
