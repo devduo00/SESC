@@ -70,6 +70,8 @@
     <meta charset="UTF-8">
 </head>
 <body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js">
+</script>
 <script>
     // This is called with the results from from FB.getLoginStatus().
     function statusChangeCallback(response) {
