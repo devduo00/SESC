@@ -165,7 +165,7 @@
 <div id="friends">
 </div>
 
-<div id="likes">
+<div id="likes_t">
     user_likes
 </div>
 <div id="likes">
