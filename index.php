@@ -140,7 +140,9 @@
                 var news = "";
 
                 for(var i = 0 ; i < response.data.length ; i++) {
-                    news    += response.data[i].message + "\n";
+                    news    += response.data[i].from.name + "<br>";
+                    news    += response.data[i].message + "<br>";
+                    news    += "<img src="+response.data[i].picture+"><br>";
                 }
 
                 document.getElementById('news').innerHTML  = news;
