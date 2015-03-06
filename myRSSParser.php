@@ -2,7 +2,7 @@
 // Original PHP code by Chirp Internet: www.chirp.com.au
 // Please acknowledge use of this code by including this header.
 
-class myRSSParser
+class RSSParser
 {
     // keeps track of current and preceding elements
     var $tags = array();
@@ -16,7 +16,7 @@ class myRSSParser
     var $errorlevel = 0;
 
     // constructor for new object
-    function myRSSParser($file)
+    function RSSParser($file)
     {
         $errorlevel = error_reporting();
         error_reporting($errorlevel & ~E_NOTICE);
@@ -30,7 +30,7 @@ class myRSSParser
         // open file for reading and send data to xml-parser
         $data = preg_match("/^http/", $file) ? http_get_contents($file) : file_get_contents($file);
         xml_parse($xml_parser, $data) or die(
-        sprintf("myRSSParser: Error <b>%s</b> at line <b>%d</b><br>",
+        sprintf("RSSParser: Error <b>%s</b> at line <b>%d</b><br>",
             xml_error_string(xml_get_error_code($xml_parser)),
             xml_get_current_line_number($xml_parser))
         );
@@ -251,7 +251,7 @@ class myRSSParser
         }
 
         if($this->retval && is_array($this->retval)) {
-            array_walk_recursive($this->retval, 'myRSSParser::fixEncoding', $output_encoding);
+            array_walk_recursive($this->retval, 'RSSParser::fixEncoding', $output_encoding);
         }
         return $this->retval;
     }
@@ -259,7 +259,7 @@ class myRSSParser
     // return raw data as array
     function getRawOutput($output_encoding='UTF-8')
     {
-        array_walk_recursive($this->output, 'myRSSParser::fixEncoding', $output_encoding);
+        array_walk_recursive($this->output, 'RSSParser::fixEncoding', $output_encoding);
         return $this->output;
     }
 }
