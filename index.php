@@ -62,17 +62,6 @@
     }
 */
 
-    include "myRSSParser.php";
-
-    // where is the feed located?
-    $url = "http://www.betting-directory.com/rss/bettingNewsRSS.xml";
-
-    // create object to hold data and display output
-    $rss_parser = new myRSSParser($url);
-
-    $output = $rss_parser->getOutput(); // returns string containing HTML
-    echo $output;
-
 ?>
 
 <!DOCTYPE html>
