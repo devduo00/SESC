@@ -62,7 +62,7 @@
     }
 */
 
-    require_once ( "myRSSParser.php" );
+    require_once("myRSSParser.php");
 
     // where is the feed located?
     $url = "http://www.betting-directory.com/rss/bettingNewsRSS.xml";
@@ -72,8 +72,17 @@
     // create object to hold data and display output
     $rss_parser = new RSSParser($url);
 
+    $graph = OpenGraph::fetch("http://outstanding.kr/%EC%A7%80%EB%82%9C-5%EB%85%84%EA%B0%84-%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%ED%9C%B4%EB%8C%80%ED%8F%B0-%EC%8B%9C%EC%9E%A5%EC%A0%90%EC%9C%A0%EC%9C%A8-%EB%8F%8C%EC%95%84%EB%B3%B4%EA%B8%B0/");
+    var_dump($graph->keys());
+    var_dump($graph->schema);
+
+    foreach ($graph as $key => $value) {
+        echo utf8_decode("$key => $value")."<br>";
+    }
+
     // output
     $output = $rss_parser->getOutput(); // returns string containing HTML
+    $rss_parser->getOpenGraph("http://outstanding.kr/%EC%A7%80%EB%82%9C-5%EB%85%84%EA%B0%84-%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90-%ED%9C%B4%EB%8C%80%ED%8F%B0-%EC%8B%9C%EC%9E%A5%EC%A0%90%EC%9C%A0%EC%9C%A8-%EB%8F%8C%EC%95%84%EB%B3%B4%EA%B8%B0/");
     echo $output;
 
 ?>
