@@ -62,6 +62,20 @@
     }
 */
 
+    require_once ( "myRSSParser.php" );
+
+    // where is the feed located?
+    $url = "http://www.betting-directory.com/rss/bettingNewsRSS.xml";
+    $url = "http://blog.gamblerspalace.com/gp/wordpress/category/sports/nba/feed/rss/";
+    $url = "http://www.bet365.com/news/en/betting/football/rss";
+
+    // create object to hold data and display output
+    $rss_parser = new RSSParser($url);
+
+    // output
+    $output = $rss_parser->getOutput(); // returns string containing HTML
+    echo $output;
+
 ?>
 
 <!DOCTYPE html>

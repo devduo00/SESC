@@ -28,7 +28,10 @@ class RSSParser
         xml_set_character_data_handler($xml_parser, "parseData");
 
         // open file for reading and send data to xml-parser
-        $data = preg_match("/^http/", $file) ? http_get_contents($file) : file_get_contents($file);
+        $opts = array('http' => array('header' => "User-Agent:MyAgent/1.0\r\n"));
+        $context = stream_context_create($opts);
+        $data = file_get_contents($file, false, $context);
+
         xml_parse($xml_parser, $data) or die(
         sprintf("RSSParser: Error <b>%s</b> at line <b>%d</b><br>",
             xml_error_string(xml_get_error_code($xml_parser)),
