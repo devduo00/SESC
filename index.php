@@ -78,7 +78,7 @@
 
     foreach ($graph as $key => $value) {
         echo utf8_decode("$key => $value")."<br>";
-        echo "$key => $value"."<br>";
+        //echo "$key => $value"."<br>";
     }
 
     // output
